@@ -77,15 +77,30 @@ export default function Home() {
     (id: WindowId) => {
       setOpenWindows((prev) => {
         const exists = prev.find((w) => w.id === id);
+
         if (exists) {
-          // bring to front
           const newZ = maxZ + 1;
           setMaxZ(newZ);
-          return prev.map((w) => (w.id === id ? { ...w, zIndex: newZ } : w));
+          return prev.map((w) =>
+            w.id === id ? { ...w, zIndex: newZ } : w
+          );
         }
+
         const newZ = maxZ + 1;
         setMaxZ(newZ);
-        return [...prev, { id, zIndex: newZ }];
+
+        // efecto cascada
+        const offset = (prev.length % 5) * 30;
+
+        return [
+          ...prev,
+          {
+            id,
+            zIndex: newZ,
+            offsetX: offset,
+            offsetY: offset,
+          },
+        ];
       });
     },
     [maxZ]
