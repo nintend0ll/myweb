@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "agu's desktop",
-  description: "Developer & designer portfolio",
+  description: "my portfolio website",
   icons: {
     icon: "/assets/decor1.png",
     shortcut: "/assets/decor1.png",
