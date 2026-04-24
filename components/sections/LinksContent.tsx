@@ -5,7 +5,7 @@ const links = [
   {
     label: "linkedin",
     url: "https://linkedin.com/in/agustina-sanchez-montoro/",
-    icon: "🐦",
+    icon: "/assets/linkedin.webp",
   },
   {
     label: "github",
