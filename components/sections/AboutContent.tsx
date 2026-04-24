@@ -3,17 +3,29 @@
 // ─── About Section Content ───────────────────────────────────────────────────
 export default function AboutContent() {
   const skills = [
-    "React", "Next.js", "JavaScript", "Node.js", "HTML", "CSS", "Ionic Framework",
-    "C# .NET", "Java", "Entity Framework", "Linq", "SQL",
-    "WebApi", "Swagger", "Postman"
+    "React",
+    "Next.js",
+    "JavaScript",
+    "Node.js",
+    "HTML",
+    "CSS",
+    "Ionic Framework",
+    "C# .NET",
+    "Java",
+    "Entity Framework",
+    "Linq",
+    "SQL",
+    "WebApi",
+    "Swagger",
+    "Postman",
   ];
   const otherInterests = [
     "desktop apps",
     "music",
     "puzzle/cozy games",
-    "anime"
+    "anime",
   ];
-  const languageProficiency = ["Spanish (Native)", "English (Intermediate)"];
+  const languageProficiency = ["Spanish (Native)", "English (Advanced)"];
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
@@ -38,16 +50,27 @@ export default function AboutContent() {
           />
           Agustina Sanchez
         </h2>
-        <p style={{ color: "var(--text-secondary)", lineHeight: 1.7, fontSize: "14px" }}>
-          hi! soy agustina :&#41; estoy en mi ultimo año de analista programadora en la ORT!!
-          en github comparto algunos de mis obligatorios (proyectos) de la uni y actualmente me encuentro
-          explorando y experimentando el desarrollo de proyectos creativos con Electron.
+        <p
+          style={{
+            color: "var(--text-secondary)",
+            lineHeight: 1.7,
+            fontSize: "14px",
+          }}
+        >
+          hi! soy agustina :&#41; estoy en mi ultimo año de analista
+          programadora en la ORT! en github comparto algunos de mis obligatorios
+          (proyectos) de la uni y actualmente me encuentro explorando y
+          experimentando el desarrollo de proyectos creativos con Electron.
         </p>
       </div>
 
-      <p style={{ color: "var(--text-secondary)", lineHeight: 1.7, fontSize: "14px" }}>
-
-      </p>
+      <p
+        style={{
+          color: "var(--text-secondary)",
+          lineHeight: 1.7,
+          fontSize: "14px",
+        }}
+      ></p>
 
       {/* Skills */}
       <div>

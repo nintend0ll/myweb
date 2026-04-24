@@ -9,7 +9,6 @@ const projects = [
       "A cute desktop music player I built with Electron as a personal gift, with custom window controls, soft pastel UI, and local playlist playback.",
     tags: ["Electron", "JavaScript", "HTML", "CSS"],
     link: "https://github.com/nintend0ll/for-u-my-love-player",
-    emoji: "💗",
   },
   {
     id: 2,
@@ -18,7 +17,6 @@ const projects = [
       "A Wicked-themed personal website with custom visuals, typography, and styling inspired by the musical's aesthetic.",
     tags: ["HTML", "CSS", "JavaScript"],
     link: "https://github.com/nintend0ll/WickedWeb",
-    emoji: "🧙‍♀️",
   },
 ];
 
@@ -34,12 +32,7 @@ export default function ProjectsContent() {
           rel="noopener noreferrer"
           style={{ textDecoration: "none", display: "block" }}
         >
-          <div
-            style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}
-          >
-            <span style={{ fontSize: "24px", flexShrink: 0, marginTop: "2px" }}>
-              {project.emoji}
-            </span>
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
             <div style={{ flex: 1, minWidth: 0 }}>
               <h3
                 style={{

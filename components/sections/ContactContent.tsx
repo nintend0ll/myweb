@@ -55,10 +55,11 @@ export default function ContactContent() {
               textDecoration: "none",
               transition: "transform 0.15s ease, background 0.15s ease",
               background: "transparent",
+              color: "#a2d2ff",
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.background =
-                "var(--accent-light)";
+                "rgba(162, 210, 255, 0.18)";
               (e.currentTarget as HTMLAnchorElement).style.transform =
                 "translateX(4px)";
             }}
@@ -100,7 +101,7 @@ export default function ContactContent() {
               <p
                 style={{
                   fontSize: "14px",
-                  color: "var(--accent)",
+                  color: "#a2d2ff",
                   fontWeight: 500,
                 }}
               >
