@@ -5,7 +5,8 @@ const projects = [
   {
     id: 1,
     name: "for u my love player",
-    description: "A cute desktop music player I built with Electron as a personal gift, with custom window controls, soft pastel UI, and local playlist playback.",
+    description:
+      "A cute desktop music player I built with Electron as a personal gift, with custom window controls, soft pastel UI, and local playlist playback.",
     tags: ["Electron", "JavaScript", "HTML", "CSS"],
     link: "https://github.com/nintend0ll/for-u-my-love-player",
     emoji: "💗",
@@ -13,7 +14,8 @@ const projects = [
   {
     id: 2,
     name: "wicked website",
-    description: "A Wicked-themed personal website with custom visuals, typography, and styling inspired by the musical's aesthetic.",
+    description:
+      "A Wicked-themed personal website with custom visuals, typography, and styling inspired by the musical's aesthetic.",
     tags: ["HTML", "CSS", "JavaScript"],
     link: "https://github.com/nintend0ll/WickedWeb",
     emoji: "🧙‍♀️",
@@ -28,9 +30,13 @@ export default function ProjectsContent() {
           key={project.id}
           href={project.link}
           className="project-card"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{ textDecoration: "none", display: "block" }}
         >
-          <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+          <div
+            style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}
+          >
             <span style={{ fontSize: "24px", flexShrink: 0, marginTop: "2px" }}>
               {project.emoji}
             </span>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
 import Window from "@/components/Window";
 import AboutContent from "@/components/sections/AboutContent";
@@ -29,19 +29,59 @@ const NAV_ITEMS: { id: WindowId; label: string; icon: string }[] = [
 // ─── Window configs ───────────────────────────────────────────────────────────
 const WINDOW_CONFIG: Record<
   WindowId,
-  { title: string; initialX: number; initialY: number; width: number; height: number }
+  {
+    title: string;
+    initialX: number;
+    initialY: number;
+    width: number;
+    height: number;
+  }
 > = {
-  about: { title: "about.txt", initialX: 60, initialY: 60, width: 460, height: 420 },
-  links: { title: "links.md", initialX: 120, initialY: 90, width: 380, height: 360 },
-  projects: { title: "projects/", initialX: 180, initialY: 80, width: 520, height: 480 },
-  faq: { title: "faq.txt", initialX: 240, initialY: 110, width: 440, height: 400 },
-  contact: { title: "contact.md", initialX: 160, initialY: 70, width: 420, height: 380 },
+  about: {
+    title: "about.txt",
+    initialX: 60,
+    initialY: 60,
+    width: 460,
+    height: 420,
+  },
+  links: {
+    title: "links.md",
+    initialX: 120,
+    initialY: 90,
+    width: 380,
+    height: 360,
+  },
+  projects: {
+    title: "projects/",
+    initialX: 180,
+    initialY: 80,
+    width: 520,
+    height: 480,
+  },
+  faq: {
+    title: "faq.txt",
+    initialX: 240,
+    initialY: 110,
+    width: 440,
+    height: 400,
+  },
+  contact: {
+    title: "contact.md",
+    initialX: 160,
+    initialY: 70,
+    width: 420,
+    height: 380,
+  },
 };
 
 // ─── Dock social links ────────────────────────────────────────────────────────
 const SOCIALS = [
   { label: "GitHub", href: "https://github.com/nintend0ll", icon: GitHubIcon },
-  { label: "LinkedIn", href: "https://linkedin.com/in/agustina-sanchez-montoro", icon: LinkedInIcon },
+  {
+    label: "LinkedIn",
+    href: "https://linkedin.com/in/agustina-sanchez-montoro",
+    icon: LinkedInIcon,
+  },
 ];
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
@@ -51,6 +91,7 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [viewport, setViewport] = useState({ width: 1280, height: 720 });
+  const sectionSounds = useRef<Record<string, HTMLAudioElement>>({});
 
   useEffect(() => {
     const updateViewport = () => {
@@ -60,14 +101,34 @@ export default function Home() {
 
     updateViewport();
     window.addEventListener("resize", updateViewport);
-    return () => window.removeEventListener("resize", updateViewport);
+
+    sectionSounds.current = {
+      default: new Audio("/assets/click.mp3"),
+      about: new Audio("/assets/surprise.mp3"),
+      projects: new Audio("/assets/curiosity.mp3"),
+    };
+
+    Object.values(sectionSounds.current).forEach((audio) => {
+      audio.volume = 0.45;
+    });
+
+    return () => {
+      window.removeEventListener("resize", updateViewport);
+      Object.values(sectionSounds.current).forEach((audio) => {
+        audio.pause();
+      });
+      sectionSounds.current = {};
+    };
   }, []);
 
   // Toggle dark mode on <html>
   const toggleTheme = () => {
     setDarkMode((prev) => {
       const next = !prev;
-      document.documentElement.setAttribute("data-theme", next ? "dark" : "light");
+      document.documentElement.setAttribute(
+        "data-theme",
+        next ? "dark" : "light",
+      );
       return next;
     });
   };
@@ -75,39 +136,50 @@ export default function Home() {
   // Open or bring to front
   const openWindow = useCallback(
     (id: WindowId) => {
+      const soundKey =
+        id === "about" ? "about" : id === "projects" ? "projects" : "default";
+      const audio =
+        sectionSounds.current[soundKey] || sectionSounds.current.default;
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play().catch(() => {
+          /* ignore autoplay errors */
+        });
+      }
+
       setOpenWindows((prev) => {
         const exists = prev.find((w) => w.id === id);
 
         if (exists) {
           const newZ = maxZ + 1;
           setMaxZ(newZ);
-          return prev.map((w) =>
-            w.id === id ? { ...w, zIndex: newZ } : w
-          );
+          return prev.map((w) => (w.id === id ? { ...w, zIndex: newZ } : w));
         }
 
         const newZ = maxZ + 1;
         setMaxZ(newZ);
 
-        // efecto cascada
-        const offset = (prev.length % 5) * 30;
-
         return [
-          ...prev,
           {
             id,
             zIndex: newZ,
-            offsetX: offset,
-            offsetY: offset,
           },
         ];
       });
     },
-    [maxZ]
+    [maxZ],
   );
 
   // Close window
   const closeWindow = useCallback((id: string) => {
+    const closeAudio = sectionSounds.current.default;
+    if (closeAudio) {
+      closeAudio.currentTime = 0;
+      closeAudio.play().catch(() => {
+        /* ignore autoplay errors */
+      });
+    }
+
     setOpenWindows((prev) => prev.filter((w) => w.id !== id));
   }, []);
 
@@ -120,7 +192,7 @@ export default function Home() {
         return prev.map((w) => (w.id === id ? { ...w, zIndex: newZ } : w));
       });
     },
-    [maxZ]
+    [maxZ],
   );
 
   return (
@@ -228,7 +300,10 @@ export default function Home() {
           {/* Body */}
           <div
             className="os-window-body"
-            style={{ padding: isMobile ? "34px 18px" : "85px 48px", textAlign: "center" }}
+            style={{
+              padding: isMobile ? "34px 18px" : "85px 48px",
+              textAlign: "center",
+            }}
           >
             {/* Greeting */}
             <h1
@@ -250,7 +325,7 @@ export default function Home() {
                 fontFamily: "'JetBrains Mono', monospace",
               }}
             >
-              fullstack dev
+              junior dev
             </p>
 
             {/* Nav icons */}
@@ -291,15 +366,19 @@ export default function Home() {
       <AnimatePresence>
         {openWindows.map((win) => {
           const cfg = WINDOW_CONFIG[win.id];
+          const centeredX = isMobile ? 8 : (viewport.width - cfg.width) / 2;
+          const centeredY = isMobile ? 54 : (viewport.height - cfg.height) / 2;
           return (
             <Window
               key={win.id}
               id={win.id}
               title={cfg.title}
-              initialX={isMobile ? 8 : cfg.initialX}
-              initialY={isMobile ? 54 : cfg.initialY}
+              initialX={centeredX}
+              initialY={centeredY}
               width={isMobile ? Math.max(280, viewport.width - 16) : cfg.width}
-              height={isMobile ? Math.max(300, viewport.height - 120) : cfg.height}
+              height={
+                isMobile ? Math.max(300, viewport.height - 120) : cfg.height
+              }
               zIndex={win.zIndex}
               onClose={closeWindow}
               onFocus={focusWindow}
@@ -374,4 +453,3 @@ function LinkedInIcon() {
     </svg>
   );
 }
-

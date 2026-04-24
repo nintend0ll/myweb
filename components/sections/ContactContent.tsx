@@ -6,19 +6,7 @@ const contactLinks = [
     label: "email",
     value: "agustinasanchezmontoro@gmail.com",
     href: "mailto:agustinasanchezmontoro@gmail.com",
-    emoji: "📬",
-  },
-  {
-    label: "github",
-    value: "github.com/agustina",
-    href: "https://github.com/nintend0ll",
-    emoji: "🐙",
-  },
-  {
-    label: "linkedin",
-    value: "linkedin.com/in/agustina",
-    href: "https://linkedin.com/in/agustina-sanchez-montoro/",
-    emoji: "💼",
+    emoji: "/assets/mail.png",
   },
 ];
 
@@ -37,7 +25,13 @@ export default function ContactContent() {
         >
           let&apos;s work together!
         </h2>
-        <p style={{ color: "var(--text-secondary)", lineHeight: 1.7, fontSize: "14px" }}>
+        <p
+          style={{
+            color: "var(--text-secondary)",
+            lineHeight: 1.7,
+            fontSize: "14px",
+          }}
+        >
           i&apos;m always open to new projects, collaborations, or just a chat.
           feel free to reach out :&#41;
         </p>
@@ -63,15 +57,33 @@ export default function ContactContent() {
               background: "transparent",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.background = "var(--accent-light)";
-              (e.currentTarget as HTMLAnchorElement).style.transform = "translateX(4px)";
+              (e.currentTarget as HTMLAnchorElement).style.background =
+                "var(--accent-light)";
+              (e.currentTarget as HTMLAnchorElement).style.transform =
+                "translateX(4px)";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
-              (e.currentTarget as HTMLAnchorElement).style.transform = "translateX(0)";
+              (e.currentTarget as HTMLAnchorElement).style.background =
+                "transparent";
+              (e.currentTarget as HTMLAnchorElement).style.transform =
+                "translateX(0)";
             }}
           >
-            <span style={{ fontSize: "20px" }}>{link.emoji}</span>
+            <span style={{ fontSize: "20px" }}>
+              {link.emoji.startsWith("/") ? (
+                <img
+                  src={link.emoji}
+                  alt={link.label}
+                  style={{
+                    width: "65px",
+                    height: "65px",
+                    objectFit: "contain",
+                  }}
+                />
+              ) : (
+                link.emoji
+              )}
+            </span>
             <div>
               <p
                 style={{
@@ -85,7 +97,13 @@ export default function ContactContent() {
               >
                 {link.label}
               </p>
-              <p style={{ fontSize: "14px", color: "var(--accent)", fontWeight: 500 }}>
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: "var(--accent)",
+                  fontWeight: 500,
+                }}
+              >
                 {link.value}
               </p>
             </div>
@@ -93,7 +111,13 @@ export default function ContactContent() {
         ))}
       </div>
 
-      <p style={{ fontSize: "13px", color: "var(--text-secondary)", fontStyle: "italic" }}>
+      <p
+        style={{
+          fontSize: "13px",
+          color: "var(--text-secondary)",
+          fontStyle: "italic",
+        }}
+      >
         response time: usually within 24 hours :&#41;
       </p>
     </div>

@@ -2,8 +2,16 @@
 
 // ─── Links Section Content ────────────────────────────────────────────────────
 const links = [
-  { label: "linkedin", url: "https://linkedin.com/in/agustina-sanchez-montoro/", icon: "🐦" },
-  { label: "github", url: "https://github.com/nintend0ll", icon: "🐙" },
+  {
+    label: "linkedin",
+    url: "https://linkedin.com/in/agustina-sanchez-montoro/",
+    icon: "🐦",
+  },
+  {
+    label: "github",
+    url: "https://github.com/nintend0ll",
+    icon: "/assets/PC.png",
+  },
 ];
 
 export default function LinksContent() {
@@ -34,10 +42,12 @@ export default function LinksContent() {
               transition: "transform 0.15s ease",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-3px)";
+              (e.currentTarget as HTMLAnchorElement).style.transform =
+                "translateY(-3px)";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
+              (e.currentTarget as HTMLAnchorElement).style.transform =
+                "translateY(0)";
             }}
           >
             <span
@@ -54,14 +64,26 @@ export default function LinksContent() {
                 boxShadow: "0 2px 0 rgba(0,0,0,0.12)",
               }}
             >
-              {link.icon}
+              {link.icon.startsWith("/") ? (
+                <img
+                  src={link.icon}
+                  alt={link.label}
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    objectFit: "contain",
+                  }}
+                />
+              ) : (
+                link.icon
+              )}
             </span>
             <span
               style={{
                 fontSize: "17px",
-              fontFamily: "'Pixeboy', monospace",
+                fontFamily: "'Pixeboy', monospace",
                 color: "rgba(0,0,0,0.75)",
-              textTransform: "uppercase",
+                textTransform: "uppercase",
                 letterSpacing: "0.05em",
                 textAlign: "center",
                 lineHeight: 1.1,

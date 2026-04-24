@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 @import "tailwindcss";
 
 @font-face {
@@ -11,7 +12,12 @@
 /* ─── Design Tokens ─────────────────────────────────────── */
 :root {
   /* Backgrounds */
-  --bg-desktop: radial-gradient(ellipse at 60% 40%, #a2d2ff 0%, #bde0fe 52%, #eaf6ff 100%);
+  --bg-desktop: radial-gradient(
+    ellipse at 60% 40%,
+    #a2d2ff 0%,
+    #bde0fe 52%,
+    #eaf6ff 100%
+  );
   --bg-window: #ffffff;
   --bg-titlebar: #2d2d2d;
   --bg-dock: rgba(255, 255, 255, 0.6);
@@ -24,7 +30,8 @@
 
   /* Borders & Shadows */
   --border-window: rgba(0, 0, 0, 0.08);
-  --shadow-window: 0 20px 60px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-window:
+    0 20px 60px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08);
   --shadow-dock: 0 8px 32px rgba(0, 0, 0, 0.12);
 
   /* Accent */
@@ -37,7 +44,12 @@
 }
 
 [data-theme="dark"] {
-  --bg-desktop: radial-gradient(ellipse at 60% 40%, #2f3f63 0%, #384e78 48%, #283956 100%);
+  --bg-desktop: radial-gradient(
+    ellipse at 60% 40%,
+    #2f3f63 0%,
+    #384e78 48%,
+    #283956 100%
+  );
   --bg-window: #2a3650;
   --bg-titlebar: #243149;
   --bg-dock: rgba(41, 56, 85, 0.62);
@@ -46,7 +58,8 @@
   --text-titlebar: #e7ecfa;
   --text-accent: #ffc8dd;
   --border-window: rgba(189, 224, 254, 0.2);
-  --shadow-window: 0 20px 60px rgba(11, 17, 32, 0.55), 0 4px 16px rgba(11, 17, 32, 0.35);
+  --shadow-window:
+    0 20px 60px rgba(11, 17, 32, 0.55), 0 4px 16px rgba(11, 17, 32, 0.35);
   --shadow-dock: 0 8px 32px rgba(11, 17, 32, 0.45);
   --accent: #ffc8dd;
   --accent-light: rgba(255, 175, 204, 0.14);
@@ -55,7 +68,9 @@
 }
 
 [data-theme="dark"] .os-window:hover {
-  box-shadow: var(--shadow-window), 0 0 0 1px rgba(255, 200, 221, 0.14);
+  box-shadow:
+    var(--shadow-window),
+    0 0 0 1px rgba(255, 200, 221, 0.14);
 }
 
 [data-theme="dark"] .nav-icon-btn:hover {
@@ -81,8 +96,10 @@ body {
 body {
   background: var(--bg-desktop);
   color: var(--text-primary);
-  font-family: 'Inter', system-ui, sans-serif;
-  transition: background 0.4s ease, color 0.3s ease;
+  font-family: "Inter", system-ui, sans-serif;
+  transition:
+    background 0.4s ease,
+    color 0.3s ease;
   user-select: none;
   /* nada se puede seleccionar */
   -webkit-user-select: none;
@@ -93,7 +110,6 @@ a {
   user-select: text;
   -webkit-user-select: text;
 }
-
 
 /* ─── Scrollbar custom (para scroll dentro de ventanas) ─── */
 ::-webkit-scrollbar {
@@ -115,7 +131,6 @@ a {
 
 /* ─── Animaciones ───────────────────────────────────────── */
 @keyframes bob {
-
   0%,
   100% {
     transform: translateY(0px) rotate(-3deg);
@@ -127,7 +142,6 @@ a {
 }
 
 @keyframes wiggle {
-
   0%,
   100% {
     transform: rotate(0deg) scale(1);
@@ -143,7 +157,6 @@ a {
 }
 
 @keyframes pulse-soft {
-
   0%,
   100% {
     opacity: 1;
@@ -174,7 +187,7 @@ a {
 }
 
 .section-window {
-  background: rgba(255, 255, 255, 0.82);
+  background: var(--bg-window);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-color: rgba(0, 0, 0, 0.12);
@@ -190,11 +203,13 @@ a {
 }
 
 [data-theme="dark"] .section-window .os-window-titlebar {
-  background: rgba(36, 49, 73, 0.9);
+  background: var(--bg-window);
 }
 
 .os-window:hover {
-  box-shadow: var(--shadow-window), 0 0 0 1px rgba(255, 175, 204, 0.2);
+  box-shadow:
+    var(--shadow-window),
+    0 0 0 1px rgba(255, 175, 204, 0.2);
 }
 
 .os-window-titlebar {
@@ -212,7 +227,7 @@ a {
 }
 
 .os-window-title {
-  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-family: "JetBrains Mono", "Courier New", monospace;
   font-size: 13px;
   color: var(--text-titlebar);
   letter-spacing: 0.03em;
@@ -228,7 +243,9 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.15s ease, filter 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease;
   flex-shrink: 0;
 }
 
@@ -267,7 +284,9 @@ a {
   cursor: pointer;
   padding: 8px;
   border-radius: 12px;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
   color: var(--text-primary);
 }
 
@@ -278,14 +297,14 @@ a {
 
 .nav-icon-btn span {
   font-size: 11px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   color: var(--text-secondary);
   font-weight: 500;
   transition: font-weight 0.15s ease;
 }
 
 .nav-icon-btn:hover span {
-  font-weight: 1900;
+  font-weight: 800;
 }
 
 /* ─── Pills ─────────────────────────────────────────────── */
@@ -296,7 +315,7 @@ a {
   border-radius: 999px;
   font-size: 12px;
   font-weight: 500;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   display: inline-block;
   transition: transform 0.15s ease;
 }
@@ -310,7 +329,9 @@ a {
   border: 1px solid var(--border-window);
   border-radius: 10px;
   padding: 16px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   background: var(--bg-window);
 }
 
@@ -341,7 +362,9 @@ a {
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
   cursor: pointer;
   text-decoration: none;
 }
@@ -363,7 +386,10 @@ a {
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
-  transition: transform 0.2s ease, color 0.2s ease, background 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease,
+    background 0.3s ease;
   font-size: 16px;
 }
 
