@@ -349,8 +349,8 @@ export default function Home() {
                     src={icon}
                     alt={label}
                     style={{
-                      width: isMobile ? "36px" : "45px",
-                      height: isMobile ? "42px" : "55px",
+                      width: isMobile ? "40px" : "52px",
+                      height: isMobile ? "48px" : "62px",
                       objectFit: "contain",
                     }}
                   />
