@@ -14,11 +14,11 @@
   /* Backgrounds */
   --bg-desktop: radial-gradient(
     ellipse at 60% 40%,
-    #a2d2ff 0%,
-    #bde0fe 52%,
-    #eaf6ff 100%
+    #cdb4db 0%,
+    #e5cee9 45%,
+    #f2e8f6 100%
   );
-  --bg-window: #ffffff;
+  --bg-window: #ffe5f9;
   --bg-titlebar: #2d2d2d;
   --bg-dock: rgba(255, 255, 255, 0.6);
 
@@ -35,7 +35,7 @@
   --shadow-dock: 0 8px 32px rgba(0, 0, 0, 0.12);
 
   /* Accent */
-  --accent: #ffafcc;
+  --accent: #bde0fe;
   --accent-light: #ffc8dd;
 
   /* Pills / tags */
@@ -61,8 +61,8 @@
   --shadow-window:
     0 20px 60px rgba(11, 17, 32, 0.55), 0 4px 16px rgba(11, 17, 32, 0.35);
   --shadow-dock: 0 8px 32px rgba(11, 17, 32, 0.45);
-  --accent: #ffc8dd;
-  --accent-light: rgba(255, 175, 204, 0.14);
+  --accent: #bde0fe;
+  --accent-light: #ffc8dd;
   --pill-bg: #3f5477;
   --pill-text: #f6d5e3;
 }
@@ -178,7 +178,7 @@ a {
 
 /* ─── Window Component ──────────────────────────────────── */
 .os-window {
-  background: var(--bg-window);
+  background: #ffe5f9;
   border: 1px solid var(--border-window);
   box-shadow: var(--shadow-window);
   border-radius: 12px;
@@ -187,7 +187,7 @@ a {
 }
 
 .section-window {
-  background: var(--bg-window);
+  background: #ffe5f9;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-color: rgba(0, 0, 0, 0.12);

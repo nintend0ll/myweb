@@ -315,7 +315,7 @@ export default function Home() {
               }}
             >
               <span style={{ color: "var(--text-primary)" }}>hi! </span>
-              <span style={{ color: "var(--accent)" }}>i&apos;m agu</span>
+              <span style={{ color: "#A2D2FF" }}>i&apos;m agu</span>
             </h1>
             <p
               style={{
