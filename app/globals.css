@@ -46,9 +46,9 @@
 [data-theme="dark"] {
   --bg-desktop: radial-gradient(
     ellipse at 60% 40%,
-    #cdb4db 0%,
-    #e5cee9 45%,
-    #f2e8f6 100%
+    #2f3f63 0%,
+    #384e78 48%,
+    #283956 100%
   );
   --bg-window: #2a3650;
   --bg-titlebar: #1a1f2e;
@@ -95,6 +95,8 @@ body {
 
 body {
   background: var(--bg-desktop);
+  background-size: cover;
+  background-position: center;
   color: var(--text-primary);
   font-family: "Inter", system-ui, sans-serif;
   transition:
@@ -103,6 +105,13 @@ body {
   user-select: none;
   /* nada se puede seleccionar */
   -webkit-user-select: none;
+}
+
+#desktop {
+  background: var(--bg-desktop);
+  background-size: cover;
+  background-position: center;
+  transition: background 0.4s ease;
 }
 
 /* re-activar selección solo en links */
